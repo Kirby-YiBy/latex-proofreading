@@ -3,6 +3,19 @@
 本文件记录每个版本的改动。格式参考 [Keep a Changelog](https://keepachangelog.com/)，
 版本号遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.2.1] - 2026-09-23
+
+修正**消费者更新步骤**。原文档只写了 `marketplace update`，而它**只刷新市场目录、
+不会移动已装的插件** —— 使用者会以为更新了，实际仍停在旧版。
+
+### 修复
+
+- `PUBLISHING.md`：更新分两步（`marketplace update` 刷目录 + `plugin update` 切版本），
+  附实测症状与核实方法（查 `installed_plugins.json` 的 `version` / `installPath` /
+  `gitCommitSha` 三个字段）
+- `PUBLISHING.md`：坑表新增一行「以为 `marketplace update` 就是升级」
+- `README.md`：补「更新」一节
+
 ## [1.2.0] - 2026-09-23
 
 两条同样来自实战、且**都能泛化到任何论文**的规则。它们不是新的检查类别，

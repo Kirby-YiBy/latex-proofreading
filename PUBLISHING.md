@@ -22,7 +22,7 @@
 > 为什么不能只丢一个 `SKILL.md` 给人？
 > 可以（复制到 `~/.claude/skills/` 就行），但那样**没有版本、没有更新、
 > 没有依赖声明**。做成插件后，别人一条命令装上，你改完 `version` 一推，
-> 大家 `/plugin marketplace update` 就能拿到新版。
+> 大家跑一次更新就能拿到新版（**更新是两步，见第五节**）。
 
 ### 为什么 marketplace 里还要再列一次 `skills`
 
@@ -157,10 +157,39 @@ GitHub 建仓库时勾「Add a README」会替你先提交一个 commit。
    保持两者一致
 3. 在 `CHANGELOG.md` 记一笔
 4. `git commit` → `git push`
-5. 使用者侧：`/plugin marketplace update <marketplace 名>` 拉新版
+5. 使用者侧：**两条命令**，见下
 
 版本号遵循语义化版本：**MAJOR** 破坏兼容（改了触发条件/脚本参数），
 **MINOR** 加功能，**PATCH** 修 bug。
+
+### 更新要分两步（这条是实测踩出来的）
+
+**`marketplace update` 只刷新「市场目录」，不会移动已装的插件。**
+新版会被下载进缓存，但**安装记录仍指向旧版本**。
+
+```bash
+claude plugin marketplace update <marketplace 名>   # 1. 刷新目录，把新版拉进缓存
+claude plugin update <插件名>@<marketplace 名>      # 2. 把已装插件切到新版
+```
+
+**实测症状**：远端已是 1.2.0，第 1 步也报成功，但 `claude plugin list`
+仍写着 `Version: 1.0.0`，缓存目录里却已经躺着 `1.2.0/`。
+
+**核实方法**：看 `~/.claude/plugins/installed_plugins.json` 里这条记录，
+第 2 步会把三个字段一起改掉：
+
+| 字段 | 更新前 | 更新后 |
+|---|---|---|
+| `installPath` | `.../1.0.0` | `.../1.2.0` |
+| `version` | `1.0.0` | `1.2.0` |
+| `gitCommitSha` | 旧提交 | 新提交 |
+
+另外：**`claude plugin install` 在已装的情况下不会升级**，它只会提示
+`already installed — the marketplace now offers X (installed: Y)`，
+把 `plugin update` 指给你。
+
+**对本地副本用户的影响**：如果你走的是「手动复制到 `~/.claude/skills/`」这条路
+（见 README），插件系统这几步**与你无关**，你只需要重新 `cp` 一次。
 
 ---
 
@@ -174,6 +203,7 @@ GitHub 建仓库时勾「Add a README」会替你先提交一个 commit。
 | **占位邮箱发给第三方 API** | `example.org` 是保留域名；CrossRef polite pool 要真实邮箱 | 改成由使用者通过参数/环境变量提供；没提供就照实提示，不伪造 |
 | **仓库建在含密钥的目录里** | 某些工具目录（如 `~/.claude/`）里有明文 token，整体入仓即泄露 | 仓库建在独立目录；`.gitignore` 里预先排除 `settings.json` / `.env` / `*.key` |
 | **manifest 靠记忆写** | 字段名记错，加载失败 | 找一个**正在被正常加载的**插件，读它的清单当模板 |
+| **以为 `marketplace update` 就是升级** | 命令报成功，`plugin list` 却还是旧版本号 | 更新分两步：先 `marketplace update` 刷目录，再 `plugin update` 切版本。见第五节 |
 
 最后一条最值得记住：**规范的最佳来源是一个真在跑的实例**，不是回忆。
 本仓库的两个清单就是照着一个已上线的插件逐字段对齐的。

@@ -26,6 +26,17 @@
 不想用插件系统？也可以直接把 `skills/latex-proofreading/` 整个目录复制到
 `~/.claude/skills/`（个人级）或你的项目里的 `.claude/skills/`（项目级）。
 
+### 更新
+
+**两条命令，缺一不可** —— 只跑第一条的话，插件仍停在旧版：
+
+```
+/plugin marketplace update latex-proofreading   # 1. 刷新市场目录
+/plugin update latex-proofreading@latex-proofreading   # 2. 切到新版本
+```
+
+手动复制安装的话，`git pull` 后重新 `cp` 一次即可。
+
 ## 依赖
 
 **核心功能零依赖** —— 9 个脚本里 7 个只用 Python 标准库。
