@@ -44,7 +44,8 @@
 skills/latex-proofreading/
 ├── SKILL.md              技能本体：8 条铁律 + P0–P6 六阶段工作流 + 报告格式
 ├── references/
-│   ├── checks.md         七大类检查清单，每项都写清「怎么验」
+│   ├── checks.md         九大类检查清单（A–I），每项都写清「怎么验」
+│   │                     H = 作者与单位（最易整个漏掉的一类）
 │   ├── pitfalls.md       已知的坑：宏渲染、CrossRef 数据偏差、环境陷阱
 │   └── case-study.md     合成案例：每条铁律的实证来源
 └── scripts/              9 个可独立运行的脚本，全部无参数运行即打印用法
