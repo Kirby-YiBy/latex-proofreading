@@ -1,0 +1,15 @@
+# 统一换行符：仓库里一律存 LF，检出时不自动改成 CRLF。
+# 这样 Windows / macOS / Linux 的贡献者不会因为换行符差异产生假 diff，
+# 也不会把 Python 脚本改成 CRLF（脚本本身仍是 CRLF 安全的，见 pitfalls.md）。
+* text=auto eol=lf
+
+*.py    text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.toml  text eol=lf
+
+# 二进制
+*.png   binary
+*.jpg   binary
+*.pdf   binary

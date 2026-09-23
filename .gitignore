@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 校稿过程中的产物：备份、diff、渲染图、临时脚本
+*.bak
+*.sha256
+*.orig
+*.rej
+renders/
+out/
+*.png
+*.jpg
+
+# 论文本身：本仓库只放工具，不放任何稿件
+paper.tex
+*.tex.words
+edits.py
+edits_*.py
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 密钥与本地环境：绝不入库
+.env
+.env.*
+*.pem
+*.key
+secrets*
+settings.json
+.claude/settings.local.json

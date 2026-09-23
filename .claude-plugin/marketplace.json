@@ -1,0 +1,20 @@
+{
+  "name": "latex-proofreading",
+  "owner": {
+    "name": "Kirby-YiBy",
+    "url": "https://github.com/Kirby-YiBy"
+  },
+  "description": "LaTeX 论文校稿工具集 —— 一套用于期刊投稿/校样阶段的方法论与校验脚本。",
+  "plugins": [
+    {
+      "name": "latex-proofreading",
+      "source": "./",
+      "description": "LaTeX 论文校稿技能：8 条铁律 + 6 阶段工作流 + 9 个校验脚本 + 合成案例。",
+      "version": "1.0.0",
+      "license": "MIT",
+      "skills": [
+        "./skills/latex-proofreading"
+      ]
+    }
+  ]
+}
