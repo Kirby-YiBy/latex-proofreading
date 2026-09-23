@@ -46,7 +46,8 @@ skills/latex-proofreading/
 ├── references/
 │   ├── checks.md         九大类检查清单（A–I），每项都写清「怎么验」
 │   │                     H = 作者与单位（最易整个漏掉的一类）
-│   ├── pitfalls.md       已知的坑：宏渲染、CrossRef 数据偏差、环境陷阱
+│   ├── pitfalls.md       已知的坑：宏渲染、CrossRef 数据偏差、环境陷阱，
+│   │                     同篇多表的数值对账，以及已交付建议的撤回纪律
 │   └── case-study.md     合成案例：每条铁律的实证来源
 └── scripts/              9 个可独立运行的脚本，全部无参数运行即打印用法
 ```
