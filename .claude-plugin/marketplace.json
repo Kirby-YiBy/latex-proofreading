@@ -9,8 +9,8 @@
     {
       "name": "latex-proofreading",
       "source": "./",
-      "description": "LaTeX 论文校稿技能：8 条铁律 + 6 阶段工作流 + 9 个校验脚本 + 合成案例。",
-      "version": "1.1.0",
+      "description": "LaTeX 论文校稿技能：8 条铁律 + 6 阶段工作流 + 9 个校验脚本 + A–I 九类检查清单（含作者与单位、数值一致性、交叉引用）+ 合成案例。",
+      "version": "1.1.1",
       "license": "MIT",
       "skills": [
         "./skills/latex-proofreading"
